@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<h1>Welcome to the Home Page template!</h1>
+{% endblock %}
+
+{% block list %}
+<p>{{title}}</p>
+<ul>
+    {% for item in list %}
+    <li>{{ item }}. <a href="{%url 'about' index=item name='ziyu' %}">点击查看详情</a> </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+
+路由跳转
+
+1. 语法：`{%url 'path' 参数的key=value %}` , 示例： `<a href="{%url 'about' index=item name='ziyu' %}">点击查看详情</a>`
+2. 修改`myapp/urls.py` , `re_path(r'about/(?P<index>[0-9]+)/(?P<name>\w+)/$', views.about, name='about')`
+    + 使用 `res_path` 使用正则规范参数，`P<index>` 设置参数名为 `index`
+3. 修改`view.py` 文件，给about函数添加参数： `def about(request,index,name):`
+
+示例代码：
